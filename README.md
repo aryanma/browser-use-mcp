@@ -10,14 +10,17 @@ A Dedalus MCP server for Browser Use Cloud API v2.
 
 ## Auth Model
 
-This server defines one MCP connection (single-connection auto-dispatch):
+This server defines one named MCP connection:
 
 - Secret key field: `BROWSER_USE_API_KEY`
+- Connection name: `browser_use`
 - Header: `X-Browser-Use-API-Key: <key>`
 - Base URL: `https://api.browser-use.com/api/v2`
 
 Use Dedalus SDK credentials (`SecretValues`) or per-server encrypted credentials
 (`MCPServerSpec.credentials`) to provide the key.
+
+If using `SecretValues`, bind the key with `Connection(name="browser_use", ...)`.
 
 ## Tools
 

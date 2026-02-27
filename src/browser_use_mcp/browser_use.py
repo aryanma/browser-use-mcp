@@ -20,6 +20,7 @@ if TYPE_CHECKING:
 BASE_URL = "https://api.browser-use.com/api/v2"
 
 browser_use = Connection(
+    name="browser_use",
     base_url=BASE_URL,
     secrets=SecretKeys(api_key="BROWSER_USE_API_KEY"),
     auth_header_name="X-Browser-Use-API-Key",
@@ -108,7 +109,7 @@ def _clamp(value: int, min_value: int, max_value: int) -> int:
 
 async def _req(method: HttpMethod, path: str, body: object | None = None) -> BrowserUseResult:
     ctx = get_context()
-    resp = await ctx.dispatch(HttpRequest(method=method, path=path, body=body))
+    resp = await ctx.dispatch("browser_use", HttpRequest(method=method, path=path, body=body))
     payload = resp.response.body if resp.response is not None else None
 
     if resp.success:
